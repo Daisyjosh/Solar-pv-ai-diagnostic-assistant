@@ -1,0 +1,535 @@
+{
+  "model_version": "v1_20261010_134021",
+  "evaluation_timestamp_utc": "2026-10-10T13:40:21.111584+00:00",
+  "validation_metrics": {
+    "overall_accuracy": 0.6266,
+    "macro_f1": 0.4813,
+    "weighted_f1": 0.6243,
+    "sample_count": 1548,
+    "per_class_metrics": {
+      "Cell": {
+        "precision": 0.5038,
+        "recall": 0.4323,
+        "f1_score": 0.4653,
+        "support": 155.0
+      },
+      "Cell-Multi": {
+        "precision": 0.3077,
+        "recall": 0.256,
+        "f1_score": 0.2795,
+        "support": 125.0
+      },
+      "Cracking": {
+        "precision": 0.5868,
+        "recall": 0.6574,
+        "f1_score": 0.6201,
+        "support": 108.0
+      },
+      "Diode": {
+        "precision": 0.5789,
+        "recall": 0.6286,
+        "f1_score": 0.6027,
+        "support": 70.0
+      },
+      "Diode-Multi": {
+        "precision": 1.0,
+        "recall": 0.4286,
+        "f1_score": 0.6,
+        "support": 7.0
+      },
+      "Hot-Spot": {
+        "precision": 0.3529,
+        "recall": 0.25,
+        "f1_score": 0.2927,
+        "support": 24.0
+      },
+      "Hot-Spot-Multi": {
+        "precision": 0.2963,
+        "recall": 0.5333,
+        "f1_score": 0.381,
+        "support": 30.0
+      },
+      "No-Anomaly": {
+        "precision": 0.819,
+        "recall": 0.813,
+        "f1_score": 0.816,
+        "support": 679.0
+      },
+      "Offline-Module": {
+        "precision": 0.42,
+        "recall": 0.5122,
+        "f1_score": 0.4615,
+        "support": 41.0
+      },
+      "Shadowing": {
+        "precision": 0.4558,
+        "recall": 0.5726,
+        "f1_score": 0.5076,
+        "support": 117.0
+      },
+      "Soiling": {
+        "precision": 0.3077,
+        "recall": 0.16,
+        "f1_score": 0.2105,
+        "support": 25.0
+      },
+      "Vegetation": {
+        "precision": 0.5577,
+        "recall": 0.521,
+        "f1_score": 0.5387,
+        "support": 167.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        67,
+        27,
+        1,
+        1,
+        0,
+        1,
+        0,
+        17,
+        5,
+        13,
+        2,
+        21
+      ],
+      [
+        18,
+        32,
+        23,
+        3,
+        0,
+        0,
+        0,
+        15,
+        2,
+        1,
+        4,
+        27
+      ],
+      [
+        4,
+        13,
+        71,
+        2,
+        0,
+        0,
+        7,
+        1,
+        0,
+        1,
+        2,
+        7
+      ],
+      [
+        2,
+        2,
+        0,
+        44,
+        0,
+        0,
+        0,
+        12,
+        3,
+        6,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        3,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        6,
+        1,
+        10,
+        0,
+        4,
+        0,
+        1
+      ],
+      [
+        0,
+        5,
+        0,
+        2,
+        0,
+        0,
+        16,
+        5,
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        10,
+        5,
+        1,
+        16,
+        0,
+        8,
+        20,
+        552,
+        14,
+        48,
+        0,
+        5
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        14,
+        21,
+        1,
+        0,
+        1
+      ],
+      [
+        7,
+        7,
+        4,
+        3,
+        0,
+        1,
+        2,
+        21,
+        1,
+        67,
+        0,
+        4
+      ],
+      [
+        1,
+        3,
+        6,
+        0,
+        0,
+        0,
+        6,
+        4,
+        0,
+        0,
+        4,
+        1
+      ],
+      [
+        20,
+        10,
+        15,
+        3,
+        0,
+        1,
+        0,
+        23,
+        2,
+        5,
+        1,
+        87
+      ]
+    ],
+    "class_names": [
+      "Cell",
+      "Cell-Multi",
+      "Cracking",
+      "Diode",
+      "Diode-Multi",
+      "Hot-Spot",
+      "Hot-Spot-Multi",
+      "No-Anomaly",
+      "Offline-Module",
+      "Shadowing",
+      "Soiling",
+      "Vegetation"
+    ]
+  },
+  "test_metrics": {
+    "overall_accuracy": 0.632,
+    "macro_f1": 0.5029,
+    "weighted_f1": 0.6341,
+    "sample_count": 1568,
+    "per_class_metrics": {
+      "Cell": {
+        "precision": 0.4932,
+        "recall": 0.4615,
+        "f1_score": 0.4768,
+        "support": 156.0
+      },
+      "Cell-Multi": {
+        "precision": 0.3762,
+        "recall": 0.3016,
+        "f1_score": 0.3348,
+        "support": 126.0
+      },
+      "Cracking": {
+        "precision": 0.6522,
+        "recall": 0.6881,
+        "f1_score": 0.6696,
+        "support": 109.0
+      },
+      "Diode": {
+        "precision": 0.68,
+        "recall": 0.7083,
+        "f1_score": 0.6939,
+        "support": 72.0
+      },
+      "Diode-Multi": {
+        "precision": 1.0,
+        "recall": 0.4444,
+        "f1_score": 0.6154,
+        "support": 9.0
+      },
+      "Hot-Spot": {
+        "precision": 0.3043,
+        "recall": 0.2692,
+        "f1_score": 0.2857,
+        "support": 26.0
+      },
+      "Hot-Spot-Multi": {
+        "precision": 0.3333,
+        "recall": 0.5625,
+        "f1_score": 0.4186,
+        "support": 32.0
+      },
+      "No-Anomaly": {
+        "precision": 0.8245,
+        "recall": 0.7724,
+        "f1_score": 0.7976,
+        "support": 681.0
+      },
+      "Offline-Module": {
+        "precision": 0.381,
+        "recall": 0.5581,
+        "f1_score": 0.4528,
+        "support": 43.0
+      },
+      "Shadowing": {
+        "precision": 0.4277,
+        "recall": 0.5966,
+        "f1_score": 0.4982,
+        "support": 119.0
+      },
+      "Soiling": {
+        "precision": 0.25,
+        "recall": 0.1538,
+        "f1_score": 0.1905,
+        "support": 26.0
+      },
+      "Vegetation": {
+        "precision": 0.6048,
+        "recall": 0.5976,
+        "f1_score": 0.6012,
+        "support": 169.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        72,
+        22,
+        2,
+        4,
+        0,
+        0,
+        0,
+        17,
+        4,
+        11,
+        1,
+        23
+      ],
+      [
+        16,
+        38,
+        22,
+        10,
+        0,
+        1,
+        0,
+        9,
+        2,
+        7,
+        6,
+        15
+      ],
+      [
+        4,
+        10,
+        75,
+        1,
+        0,
+        0,
+        6,
+        2,
+        0,
+        2,
+        2,
+        7
+      ],
+      [
+        2,
+        2,
+        0,
+        51,
+        0,
+        0,
+        0,
+        10,
+        3,
+        2,
+        0,
+        2
+      ],
+      [
+        0,
+        1,
+        0,
+        1,
+        4,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        7,
+        4,
+        8,
+        0,
+        6,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        2,
+        2,
+        0,
+        1,
+        18,
+        1,
+        1,
+        5,
+        0,
+        1
+      ],
+      [
+        26,
+        6,
+        3,
+        4,
+        0,
+        12,
+        15,
+        526,
+        23,
+        56,
+        0,
+        10
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        15,
+        24,
+        2,
+        0,
+        0
+      ],
+      [
+        7,
+        6,
+        3,
+        2,
+        0,
+        0,
+        1,
+        23,
+        0,
+        71,
+        1,
+        5
+      ],
+      [
+        3,
+        3,
+        4,
+        0,
+        0,
+        0,
+        8,
+        1,
+        0,
+        0,
+        4,
+        3
+      ],
+      [
+        15,
+        12,
+        4,
+        0,
+        0,
+        1,
+        1,
+        25,
+        5,
+        3,
+        2,
+        101
+      ]
+    ],
+    "class_names": [
+      "Cell",
+      "Cell-Multi",
+      "Cracking",
+      "Diode",
+      "Diode-Multi",
+      "Hot-Spot",
+      "Hot-Spot-Multi",
+      "No-Anomaly",
+      "Offline-Module",
+      "Shadowing",
+      "Soiling",
+      "Vegetation"
+    ]
+  },
+  "split_manifest": "data\\processed\\proposed_splits.json",
+  "dataset_name": "InfraredSolarModules",
+  "training_time_seconds": 119.32
+}

@@ -1,0 +1,44 @@
+# ==============================================================================
+# Solar PV AI Diagnostic Assistant - Foundational Dependencies
+# ==============================================================================
+# Compatible with Python 3.11+
+# Deep learning and LLM packages are deferred to Phase 5 and Phase 8.
+
+# --- Core Backend & API ---
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+pydantic>=2.10.0
+pydantic-settings>=2.7.0
+python-dotenv>=1.0.1
+
+# --- Database & Migrations ---
+sqlalchemy>=2.0.36
+alembic>=1.14.0
+
+# --- Frontend ---
+streamlit>=1.41.0
+
+# --- Image Processing & Numerical Computation ---
+numpy>=1.26.0
+pillow>=11.0.0
+opencv-python-headless>=4.10.0
+
+# --- Telemetry & Data Ingestion (CSV / Excel) ---
+pandas>=2.2.0
+openpyxl>=3.1.5
+
+# --- PDF Engineering Reports ---
+reportlab>=4.2.0
+
+# --- Testing & Quality Assurance ---
+pytest>=8.3.0
+httpx>=0.28.0
+ruff>=0.8.0
+
+# --- Note on Future Optional Extensions ---
+# Computer Vision / Deep Learning (evaluated in Phase 4 & 5 after dataset audit):
+# torch>=2.2.0
+# torchvision>=0.17.0
+#
+# Conversational Assistant (evaluated in Phase 8):
+# anthropic / openai / google-genai

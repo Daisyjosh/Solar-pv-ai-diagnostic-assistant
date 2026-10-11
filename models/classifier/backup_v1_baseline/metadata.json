@@ -1,0 +1,31 @@
+{
+  "model_version": "v1_20261010_134021",
+  "created_at_utc": "2026-10-10T13:40:21.111584+00:00",
+  "algorithm": "HistGradientBoostingClassifier",
+  "feature_dim": 2950,
+  "num_classes": 12,
+  "class_names": [
+    "Cell",
+    "Cell-Multi",
+    "Cracking",
+    "Diode",
+    "Diode-Multi",
+    "Hot-Spot",
+    "Hot-Spot-Multi",
+    "No-Anomaly",
+    "Offline-Module",
+    "Shadowing",
+    "Soiling",
+    "Vegetation"
+  ],
+  "training_sample_count": 16884,
+  "validation_sample_count": 1548,
+  "test_sample_count": 1568,
+  "split_manifest_source": "data\\processed\\proposed_splits.json",
+  "dataset_name": "InfraredSolarModules",
+  "hyperparameters": {
+    "max_iter": 150,
+    "learning_rate": 0.08,
+    "train_duration_seconds": 119.32
+  }
+}

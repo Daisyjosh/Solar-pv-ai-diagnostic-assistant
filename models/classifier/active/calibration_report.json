@@ -1,0 +1,33 @@
+{
+  "calibrator_version": "isotonic_v1",
+  "created_at_utc": "2026-10-11T13:20:46.636788+00:00",
+  "fitting_split": "validation",
+  "sample_count": 1548,
+  "method": "isotonic",
+  "validation_metrics": {
+    "raw_log_loss": 1.1659,
+    "raw_brier_score": 0.521,
+    "calibrated_log_loss": 1.0142,
+    "calibrated_brier_score": 0.4652,
+    "log_loss_reduction_pct": 13.01,
+    "brier_reduction_pct": 10.72
+  },
+  "empirical_thresholds": {
+    "tier_1_ambiguous": {
+      "max_confidence_below": 0.4,
+      "margin_below": 0.05,
+      "action": "INCONCLUSIVE"
+    },
+    "tier_2_low_confidence": {
+      "max_confidence_below": 0.5,
+      "margin_below": 0.08,
+      "action": "CORROBORATION_REQUIRED"
+    },
+    "tier_3_accepted": {
+      "min_confidence": 0.5,
+      "min_margin": 0.08,
+      "action": "ACCEPTED_HYPOTHESIS"
+    }
+  },
+  "notes": "Fitted strictly on validation partition. Test partition remained completely untouched."
+}

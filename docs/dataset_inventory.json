@@ -1,0 +1,310 @@
+{
+  "scan_timestamp_utc": "2026-10-10T10:49:32.383975+00:00",
+  "scanned_directory": "C:\\sem-7-project\\data",
+  "total_files_scanned": 12,
+  "valid_images_count": 8,
+  "corrupt_files_count": 0,
+  "zero_byte_files_count": 0,
+  "format_distribution": {
+    "PNG": 2,
+    "JPEG": 6
+  },
+  "provenance_distribution": {
+    "SYNTHETIC_VERIFICATION_FIXTURE": 6,
+    "OPERATIONAL_INSPECTION_UPLOAD": 2
+  },
+  "radiometric_distribution": {
+    "NOT_CONFIRMED": 8
+  },
+  "exact_duplicates_count": 3,
+  "exact_duplicate_groups": [
+    [
+      "raw/inspections/1/1e35d96924cb430db6b961f740676aa7_ortho_rgb.png",
+      "raw/inspections/2/afc05c5393c347abab9da8a6b36961d6_ortho_rgb.png"
+    ],
+    [
+      "raw/inspections/1/50dc5e5363f44471b36d18e3e104d629_flir_thermal_01.jpg",
+      "raw/inspections/1/f1fa249cdef94bf7973684bcc88e1022_flir_thermal_01.jpg"
+    ],
+    [
+      "raw/inspections/1/f3cd8f1470e94cb0814bb43ae3eaa1bb_rendered_ironbow.jpg",
+      "raw/inspections/2/0271221dad344f57b922aeb42ec0daa7_rendered_ironbow.jpg"
+    ]
+  ],
+  "near_duplicate_candidate_pairs": [
+    {
+      "file_a": "raw/inspections/1/1e35d96924cb430db6b961f740676aa7_ortho_rgb.png",
+      "file_b": "raw/inspections/1/50dc5e5363f44471b36d18e3e104d629_flir_thermal_01.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/1e35d96924cb430db6b961f740676aa7_ortho_rgb.png",
+      "file_b": "raw/inspections/1/d1a4cae2cbb9442f8e3d6fee82383afd_flir_vue_capture.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/1e35d96924cb430db6b961f740676aa7_ortho_rgb.png",
+      "file_b": "raw/inspections/1/f1fa249cdef94bf7973684bcc88e1022_flir_thermal_01.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/1e35d96924cb430db6b961f740676aa7_ortho_rgb.png",
+      "file_b": "raw/inspections/1/f3cd8f1470e94cb0814bb43ae3eaa1bb_rendered_ironbow.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/1e35d96924cb430db6b961f740676aa7_ortho_rgb.png",
+      "file_b": "raw/inspections/2/0271221dad344f57b922aeb42ec0daa7_rendered_ironbow.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/1e35d96924cb430db6b961f740676aa7_ortho_rgb.png",
+      "file_b": "raw/inspections/2/677b6dbdb55c42ee8cd909c44ba7d4bb_flir_vue_capture.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/50dc5e5363f44471b36d18e3e104d629_flir_thermal_01.jpg",
+      "file_b": "raw/inspections/1/d1a4cae2cbb9442f8e3d6fee82383afd_flir_vue_capture.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/50dc5e5363f44471b36d18e3e104d629_flir_thermal_01.jpg",
+      "file_b": "raw/inspections/1/f3cd8f1470e94cb0814bb43ae3eaa1bb_rendered_ironbow.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/50dc5e5363f44471b36d18e3e104d629_flir_thermal_01.jpg",
+      "file_b": "raw/inspections/2/0271221dad344f57b922aeb42ec0daa7_rendered_ironbow.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/50dc5e5363f44471b36d18e3e104d629_flir_thermal_01.jpg",
+      "file_b": "raw/inspections/2/677b6dbdb55c42ee8cd909c44ba7d4bb_flir_vue_capture.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/50dc5e5363f44471b36d18e3e104d629_flir_thermal_01.jpg",
+      "file_b": "raw/inspections/2/afc05c5393c347abab9da8a6b36961d6_ortho_rgb.png",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/d1a4cae2cbb9442f8e3d6fee82383afd_flir_vue_capture.jpg",
+      "file_b": "raw/inspections/1/f1fa249cdef94bf7973684bcc88e1022_flir_thermal_01.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/d1a4cae2cbb9442f8e3d6fee82383afd_flir_vue_capture.jpg",
+      "file_b": "raw/inspections/1/f3cd8f1470e94cb0814bb43ae3eaa1bb_rendered_ironbow.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/d1a4cae2cbb9442f8e3d6fee82383afd_flir_vue_capture.jpg",
+      "file_b": "raw/inspections/2/0271221dad344f57b922aeb42ec0daa7_rendered_ironbow.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/d1a4cae2cbb9442f8e3d6fee82383afd_flir_vue_capture.jpg",
+      "file_b": "raw/inspections/2/677b6dbdb55c42ee8cd909c44ba7d4bb_flir_vue_capture.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/d1a4cae2cbb9442f8e3d6fee82383afd_flir_vue_capture.jpg",
+      "file_b": "raw/inspections/2/afc05c5393c347abab9da8a6b36961d6_ortho_rgb.png",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/f1fa249cdef94bf7973684bcc88e1022_flir_thermal_01.jpg",
+      "file_b": "raw/inspections/1/f3cd8f1470e94cb0814bb43ae3eaa1bb_rendered_ironbow.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/f1fa249cdef94bf7973684bcc88e1022_flir_thermal_01.jpg",
+      "file_b": "raw/inspections/2/0271221dad344f57b922aeb42ec0daa7_rendered_ironbow.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/f1fa249cdef94bf7973684bcc88e1022_flir_thermal_01.jpg",
+      "file_b": "raw/inspections/2/677b6dbdb55c42ee8cd909c44ba7d4bb_flir_vue_capture.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/f1fa249cdef94bf7973684bcc88e1022_flir_thermal_01.jpg",
+      "file_b": "raw/inspections/2/afc05c5393c347abab9da8a6b36961d6_ortho_rgb.png",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/f3cd8f1470e94cb0814bb43ae3eaa1bb_rendered_ironbow.jpg",
+      "file_b": "raw/inspections/2/677b6dbdb55c42ee8cd909c44ba7d4bb_flir_vue_capture.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/1/f3cd8f1470e94cb0814bb43ae3eaa1bb_rendered_ironbow.jpg",
+      "file_b": "raw/inspections/2/afc05c5393c347abab9da8a6b36961d6_ortho_rgb.png",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/2/0271221dad344f57b922aeb42ec0daa7_rendered_ironbow.jpg",
+      "file_b": "raw/inspections/2/677b6dbdb55c42ee8cd909c44ba7d4bb_flir_vue_capture.jpg",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/2/0271221dad344f57b922aeb42ec0daa7_rendered_ironbow.jpg",
+      "file_b": "raw/inspections/2/afc05c5393c347abab9da8a6b36961d6_ortho_rgb.png",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    },
+    {
+      "file_a": "raw/inspections/2/677b6dbdb55c42ee8cd909c44ba7d4bb_flir_vue_capture.jpg",
+      "file_b": "raw/inspections/2/afc05c5393c347abab9da8a6b36961d6_ortho_rgb.png",
+      "hamming_distance": 0,
+      "threshold": 4,
+      "note": "Candidate near-duplicate flagged for review; does not prove scene identity"
+    }
+  ],
+  "license_documentation": "Unknown / Not documented in scanned directory",
+  "records": [
+    {
+      "relative_path": "raw/inspections/1/1e35d96924cb430db6b961f740676aa7_ortho_rgb.png",
+      "file_size_bytes": 594,
+      "format": "PNG",
+      "width": 200,
+      "height": 200,
+      "channels": 4,
+      "provenance": "SYNTHETIC_VERIFICATION_FIXTURE",
+      "sha256": "98e3ae7f37d8c0df4fcb82837096404ebfe9720bc87da7797eb46fba5c49f7d9",
+      "radiometric_status": "NOT_CONFIRMED",
+      "is_corrupt": false
+    },
+    {
+      "relative_path": "raw/inspections/1/50dc5e5363f44471b36d18e3e104d629_flir_thermal_01.jpg",
+      "file_size_bytes": 885,
+      "format": "JPEG",
+      "width": 120,
+      "height": 120,
+      "channels": 3,
+      "provenance": "OPERATIONAL_INSPECTION_UPLOAD",
+      "sha256": "1898094585593a445e35e6feacb463fdcb58f750a8828e580e909023bd5e9076",
+      "radiometric_status": "NOT_CONFIRMED",
+      "is_corrupt": false
+    },
+    {
+      "relative_path": "raw/inspections/1/d1a4cae2cbb9442f8e3d6fee82383afd_flir_vue_capture.jpg",
+      "file_size_bytes": 1097,
+      "format": "JPEG",
+      "width": 160,
+      "height": 120,
+      "channels": 3,
+      "provenance": "SYNTHETIC_VERIFICATION_FIXTURE",
+      "sha256": "d43e53e05098c2e3153f561fa1264491aed7d42f53a1272b79c9bcae66058612",
+      "radiometric_status": "NOT_CONFIRMED",
+      "is_corrupt": false
+    },
+    {
+      "relative_path": "raw/inspections/1/f1fa249cdef94bf7973684bcc88e1022_flir_thermal_01.jpg",
+      "file_size_bytes": 885,
+      "format": "JPEG",
+      "width": 120,
+      "height": 120,
+      "channels": 3,
+      "provenance": "OPERATIONAL_INSPECTION_UPLOAD",
+      "sha256": "1898094585593a445e35e6feacb463fdcb58f750a8828e580e909023bd5e9076",
+      "radiometric_status": "NOT_CONFIRMED",
+      "is_corrupt": false
+    },
+    {
+      "relative_path": "raw/inspections/1/f3cd8f1470e94cb0814bb43ae3eaa1bb_rendered_ironbow.jpg",
+      "file_size_bytes": 949,
+      "format": "JPEG",
+      "width": 160,
+      "height": 120,
+      "channels": 3,
+      "provenance": "SYNTHETIC_VERIFICATION_FIXTURE",
+      "sha256": "ca0838833ca030b05056e8881bad5e4a59dbaa4d213ddb8fac0eb6939258aa89",
+      "radiometric_status": "NOT_CONFIRMED",
+      "is_corrupt": false
+    },
+    {
+      "relative_path": "raw/inspections/2/0271221dad344f57b922aeb42ec0daa7_rendered_ironbow.jpg",
+      "file_size_bytes": 949,
+      "format": "JPEG",
+      "width": 160,
+      "height": 120,
+      "channels": 3,
+      "provenance": "SYNTHETIC_VERIFICATION_FIXTURE",
+      "sha256": "ca0838833ca030b05056e8881bad5e4a59dbaa4d213ddb8fac0eb6939258aa89",
+      "radiometric_status": "NOT_CONFIRMED",
+      "is_corrupt": false
+    },
+    {
+      "relative_path": "raw/inspections/2/677b6dbdb55c42ee8cd909c44ba7d4bb_flir_vue_capture.jpg",
+      "file_size_bytes": 1057,
+      "format": "JPEG",
+      "width": 160,
+      "height": 120,
+      "channels": 3,
+      "provenance": "SYNTHETIC_VERIFICATION_FIXTURE",
+      "sha256": "f699345784603dc35f99887b03be4c5a3d7380cc0ef054b7214d2672a5f41bbe",
+      "radiometric_status": "NOT_CONFIRMED",
+      "is_corrupt": false
+    },
+    {
+      "relative_path": "raw/inspections/2/afc05c5393c347abab9da8a6b36961d6_ortho_rgb.png",
+      "file_size_bytes": 594,
+      "format": "PNG",
+      "width": 200,
+      "height": 200,
+      "channels": 4,
+      "provenance": "SYNTHETIC_VERIFICATION_FIXTURE",
+      "sha256": "98e3ae7f37d8c0df4fcb82837096404ebfe9720bc87da7797eb46fba5c49f7d9",
+      "radiometric_status": "NOT_CONFIRMED",
+      "is_corrupt": false
+    }
+  ]
+}
