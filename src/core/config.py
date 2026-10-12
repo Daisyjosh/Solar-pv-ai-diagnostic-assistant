@@ -47,6 +47,11 @@ class Settings(BaseSettings):
     gemini_api_key: Optional[str] = None
     gemini_model_name: str = "gemini-3.5-flash"
 
+    # YOLO Object Detection Configuration (Optional)
+    yolo_model_path: Optional[str] = "models/yolo/active/best.pt"
+    yolo_confidence_threshold: float = 0.25
+    yolo_iou_threshold: float = 0.45
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

@@ -5,6 +5,7 @@ thermal anomaly analysis, telemetry ingestion, and multi-modal decision support.
 Aligned with IEC 62446-3, IEC 61215, and IEA-PVPS Task 13.
 """
 
+import base64
 from datetime import datetime, timezone
 import io
 import json
@@ -15,6 +16,9 @@ import pandas as pd
 from PIL import Image
 import streamlit as st
 
+import importlib
+import frontend.api_client
+importlib.reload(frontend.api_client)
 from frontend.api_client import BackendAPIClient
 from src.core.formatting import format_power_loss, is_synthetic_asset, is_synthetic_telemetry
 
@@ -95,6 +99,81 @@ def render_gemini_analysis_card(res: Optional[Dict[str, Any]]):
         st.error(f"🔑 **Invalid API Key**: {msg}")
     else:
         st.error(f"⚠️ **Analysis Status: {status}**: {msg}")
+
+
+def render_yolo_analysis_card(res: Optional[Dict[str, Any]]):
+    """Render structured YOLO object detection & localization card."""
+    if not res:
+        return
+    status = res.get("status")
+    model_path = res.get("model_path") or "Not configured"
+    msg = res.get("message", "")
+    detections = res.get("detections", [])
+    total_detections = res.get("total_detections", len(detections))
+    annotated_b64 = res.get("annotated_image_base64")
+    disclaimer = res.get("disclaimer", "Automated YOLO detection hypothesis for engineering review — requires physical verification.")
+
+    if status == "SUCCESS":
+        st.success(f"🎯 **YOLO Anomaly Localization Complete** ({total_detections} detection(s) found)")
+        st.info("ℹ️ **Spatial Localization**: Bounding boxes identify candidate anomaly regions according to IEC 62446-3 thermography inspection criteria.")
+
+        c_left, c_right = st.columns([1, 1])
+        with c_left:
+            if annotated_b64:
+                try:
+                    annotated_bytes = base64.b64decode(annotated_b64)
+                    st.image(Image.open(io.BytesIO(annotated_bytes)), caption="YOLO Spatial Anomaly Detections", use_container_width=True)
+                except Exception as e:
+                    st.warning(f"Could not render annotated detection image: {e}")
+            else:
+                st.caption("No annotated visualization available.")
+
+        with c_right:
+            if detections:
+                st.markdown("##### Detected Anomaly Candidates")
+                det_rows = []
+                for idx, d in enumerate(detections, 1):
+                    bbox = d.get("bbox", {})
+                    det_rows.append({
+                        "#": idx,
+                        "Category": d.get("class_name", "Unknown"),
+                        "Confidence": f"{d.get('confidence', 0.0):.1%}",
+                        "BBox [xmin, ymin, xmax, ymax]": f"[{bbox.get('xmin', 0):.0f}, {bbox.get('ymin', 0):.0f}, {bbox.get('xmax', 0):.0f}, {bbox.get('ymax', 0):.0f}]",
+                    })
+                st.dataframe(pd.DataFrame(det_rows), use_container_width=True)
+            else:
+                st.info("No anomalies detected above confidence threshold.")
+
+        st.caption(f"Model Path: `{model_path}`")
+        st.warning(f"🛡️ **Engineering Disclaimer**: {disclaimer}")
+
+    elif status == "WEIGHTS_UNAVAILABLE":
+        st.warning("⚠️ **YOLO Model Weights Unavailable**")
+        st.markdown(
+            f"{msg}\n\n"
+            "**Setup Instructions**:\n"
+            "1. Train or download a YOLOv8/v9/v11 model annotated with solar PV anomaly bounding boxes (e.g., Hotspot, Diode, Cell, Multi-cell, Cracking).\n"
+            "2. Place the trained weights file at `models/yolo/active/best.pt` (or set `YOLO_MODEL_PATH` in `.env`).\n"
+            "3. Ensure `ultralytics` is installed in your Python environment (`pip install ultralytics`).\n"
+            "4. No artificial detections or fake bounding boxes are generated."
+        )
+    elif status == "DEPENDENCY_UNAVAILABLE":
+        st.warning("⚠️ **YOLO Runtime Dependency Unavailable**")
+        st.markdown(
+            f"{msg}\n\n"
+            "To enable YOLO inference, install `ultralytics`:\n"
+            "```powershell\n"
+            "pip install ultralytics\n"
+            "```"
+        )
+    elif status == "IMAGE_ERROR":
+        st.error(f"🖼️ **Image Decode Error**: {msg}")
+    elif status == "FILE_NOT_FOUND":
+        st.error(f"📁 **File Not Found**: {msg}")
+    elif status == "INFERENCE_ERROR":
+        st.error(f"❌ **YOLO Inference Error**: {msg}")
+    else:
+        st.error(f"⚠️ **YOLO Status: {status}**: {msg}")
 
 
 # Navigation Menu
@@ -501,17 +580,20 @@ elif selected_view == "7. Image-Analysis Results":
     st.header("AI Vision Anomaly Classification")
 
     # Display operational model indicators
-    gem_status = client.get_gemini_status()
-    if gem_status.get("is_configured"):
-        st.caption(
-            f"Active Models: **HistGradientBoosting** (12-class benchmark) & "
-            f"**Google Gemini Vision** (`{gem_status.get('model_name')}` ready)"
-        )
-    else:
-        st.caption(
-            "Active Models: **HistGradientBoosting** (12-class benchmark) | "
-            "Gemini Vision: ⚪ *Key not configured (Optional free-tier)*"
-        )
+    gem_status = client.get_gemini_status() if hasattr(client, "get_gemini_status") else {"is_configured": False}
+    yolo_status = (
+        client.get_yolo_status()
+        if hasattr(client, "get_yolo_status")
+        else {"is_configured": False, "status": "WEIGHTS_UNAVAILABLE"}
+    )
+
+    gem_desc = f"**Google Gemini Vision** (`{gem_status.get('model_name')}` ready)" if gem_status.get("is_configured") else "Gemini Vision: ⚪ *Key not configured (Optional free-tier)*"
+    yolo_desc = "**YOLO Localization** (ready)" if yolo_status.get("is_configured") else "YOLO Localization: ⚪ *Weights pending*"
+
+    st.caption(
+        f"Active Models: **HistGradientBoosting** (12-class benchmark) | "
+        f"{gem_desc} | {yolo_desc}"
+    )
 
     tab_inspect, tab_direct = st.tabs(["Classify Existing Ingested Asset", "Direct Thermal Crop Classification"])
 
@@ -541,7 +623,7 @@ elif selected_view == "7. Image-Analysis Results":
                         st.warning("⚠️ **SYNTHETIC TEST IMAGE**: Uploaded benchmark crop for software validation. Predictions represent synthetic benchmarks, not real field defects.")
 
                 with col_pred:
-                    btn_c1, btn_c2 = st.columns(2)
+                    btn_c1, btn_c2, btn_c3 = st.columns(3)
                     with btn_c1:
                         if st.button("Run ML Classifier", use_container_width=True, key=f"btn_ml_{sel_asset_id}"):
                             with st.spinner("Executing feature extraction and model inference..."):
@@ -550,6 +632,13 @@ elif selected_view == "7. Image-Analysis Results":
                         if st.button("✨ Analyze with Gemini", use_container_width=True, key=f"btn_gemini_{sel_asset_id}"):
                             with st.spinner("Querying Gemini multimodal vision (free-tier)..."):
                                 st.session_state[f"gemini_pred_{sel_asset_id}"] = client.analyze_gemini_asset(sel_asset_id)
+                    with btn_c3:
+                        if st.button("🎯 Detect with YOLO", use_container_width=True, key=f"btn_yolo_{sel_asset_id}"):
+                            with st.spinner("Running YOLO anomaly localization..."):
+                                if hasattr(client, "detect_yolo_asset"):
+                                    st.session_state[f"yolo_pred_{sel_asset_id}"] = client.detect_yolo_asset(sel_asset_id)
+                                else:
+                                    st.session_state[f"yolo_pred_{sel_asset_id}"] = {"status": "UNAVAILABLE", "message": "YOLO client method pending reload."}
 
                     pred = st.session_state.get(f"ml_pred_{sel_asset_id}")
                     if pred:
@@ -597,6 +686,13 @@ elif selected_view == "7. Image-Analysis Results":
                     st.subheader("✨ Gemini Multimodal Vision Analysis (Side-by-Side Review)")
                     render_gemini_analysis_card(gemini_res)
 
+                # Display YOLO Localization below image and ML classifier
+                yolo_res = st.session_state.get(f"yolo_pred_{sel_asset_id}")
+                if yolo_res:
+                    st.markdown("---")
+                    st.subheader("🎯 YOLO Anomaly Localization & Detection")
+                    render_yolo_analysis_card(yolo_res)
+
     with tab_direct:
         st.subheader("Direct Thermal Crop Upload")
         crop_file = st.file_uploader("Upload 24x40 or arbitrary PV Thermal Crop", type=["jpg", "jpeg", "png"], key="crop_direct")
@@ -606,7 +702,7 @@ elif selected_view == "7. Image-Analysis Results":
             with col_c1:
                 st.image(Image.open(io.BytesIO(crop_bytes)), caption="Uploaded Crop", width=160)
             with col_c2:
-                btn_d1, btn_d2 = st.columns(2)
+                btn_d1, btn_d2, btn_d3 = st.columns(3)
                 with btn_d1:
                     if st.button("Classify with ML", use_container_width=True, key=f"btn_ml_crop_{crop_file.name}"):
                         with st.spinner("Extracting features and classifying crop..."):
@@ -615,6 +711,13 @@ elif selected_view == "7. Image-Analysis Results":
                     if st.button("✨ Analyze with Gemini", use_container_width=True, key=f"btn_gemini_crop_{crop_file.name}"):
                         with st.spinner("Analyzing crop with Gemini vision..."):
                             st.session_state[f"gemini_crop_{crop_file.name}"] = client.analyze_gemini_upload(crop_bytes, crop_file.name)
+                with btn_d3:
+                    if st.button("🎯 Detect with YOLO", use_container_width=True, key=f"btn_yolo_crop_{crop_file.name}"):
+                        with st.spinner("Detecting anomalies with YOLO..."):
+                            if hasattr(client, "detect_yolo_upload"):
+                                st.session_state[f"yolo_crop_{crop_file.name}"] = client.detect_yolo_upload(crop_bytes, crop_file.name)
+                            else:
+                                st.session_state[f"yolo_crop_{crop_file.name}"] = {"status": "UNAVAILABLE", "message": "YOLO client method pending reload."}
 
                 pred = st.session_state.get(f"ml_crop_{crop_file.name}")
                 if pred:
@@ -651,6 +754,12 @@ elif selected_view == "7. Image-Analysis Results":
                 st.markdown("---")
                 st.subheader("✨ Gemini Multimodal Vision Analysis (Crop Review)")
                 render_gemini_analysis_card(gemini_crop_res)
+
+            yolo_crop_res = st.session_state.get(f"yolo_crop_{crop_file.name}")
+            if yolo_crop_res:
+                st.markdown("---")
+                st.subheader("🎯 YOLO Anomaly Localization (Crop Review)")
+                render_yolo_analysis_card(yolo_crop_res)
 
 # ==============================================================================
 # VIEW 8: DIAGNOSTIC ASSESSMENT

@@ -140,3 +140,61 @@ def analyze_uploaded_image_with_gemini(
             detail=f"Failed to read image bytes: {str(exc)}",
         )
 
+
+# --- YOLO Object Detection Endpoints ---
+
+from src.vision.yolo_service import (
+    YOLOAnalysisResult,
+    YOLOVisionService,
+    get_yolo_service,
+)
+
+
+@router.get("/yolo/status")
+def get_yolo_status(
+    yolo_svc: YOLOVisionService = Depends(get_yolo_service),
+) -> Dict[str, Any]:
+    """Return operational status, weights path, and readiness of the YOLO vision service."""
+    return yolo_svc.get_status()
+
+
+@router.post("/yolo/detect/{image_asset_id}", response_model=YOLOAnalysisResult)
+def detect_image_with_yolo(
+    image_asset_id: int,
+    db: Session = Depends(get_db),
+    yolo_svc: YOLOVisionService = Depends(get_yolo_service),
+) -> YOLOAnalysisResult:
+    """Run YOLO object detection and anomaly localization on an existing stored image asset."""
+    asset = db.get(ImageAsset, image_asset_id)
+    if not asset:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Image asset with id {image_asset_id} not found.",
+        )
+
+    try:
+        resolved_path = asset.resolve_absolute_path()
+    except (FileNotFoundError, DirectoryTraversalError) as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Stored image file not found on disk at {asset.file_path}",
+        )
+
+    return yolo_svc.detect_asset(resolved_path)
+
+
+@router.post("/yolo/detect-upload", response_model=YOLOAnalysisResult)
+def detect_uploaded_image_with_yolo(
+    file: UploadFile = File(...),
+    yolo_svc: YOLOVisionService = Depends(get_yolo_service),
+) -> YOLOAnalysisResult:
+    """Run YOLO object detection directly on uploaded image bytes."""
+    try:
+        content = file.file.read()
+        return yolo_svc.detect_image(content)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Failed to read image bytes for YOLO inference: {str(exc)}",
+        )
+

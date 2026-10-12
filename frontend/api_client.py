@@ -344,6 +344,41 @@ class BackendAPIClient:
         except Exception as exc:
             return {"status": "ERROR", "message": str(exc)}
 
+    # --- YOLO Object Detection APIs ---
+    def get_yolo_status(self) -> Dict[str, Any]:
+        """Check if YOLO vision service is configured and ready in backend."""
+        try:
+            with httpx.Client(timeout=5.0) as client:
+                res = client.get(f"{self.base_url}/vision/yolo/status")
+                if res.status_code == 200:
+                    return res.json()
+                return {"status": "ERROR", "is_configured": False, "message": f"Error {res.status_code}"}
+        except Exception:
+            return {"status": "NETWORK_ERROR", "is_configured": False, "message": "Connection error"}
+
+    def detect_yolo_asset(self, image_asset_id: int) -> Dict[str, Any]:
+        """Run YOLO object detection on an existing image asset."""
+        try:
+            with httpx.Client(timeout=30.0) as client:
+                res = client.post(f"{self.base_url}/vision/yolo/detect/{image_asset_id}")
+                if res.status_code == 200:
+                    return res.json()
+                return {"status": "ERROR", "message": res.json().get("detail", f"Error {res.status_code}")}
+        except Exception as exc:
+            return {"status": "ERROR", "message": str(exc)}
+
+    def detect_yolo_upload(self, file_bytes: bytes, filename: str) -> Dict[str, Any]:
+        """Run YOLO object detection on directly uploaded image bytes."""
+        try:
+            files = {"file": (filename, file_bytes)}
+            with httpx.Client(timeout=30.0) as client:
+                res = client.post(f"{self.base_url}/vision/yolo/detect-upload", files=files)
+                if res.status_code == 200:
+                    return res.json()
+                return {"status": "ERROR", "message": res.json().get("detail", f"Error {res.status_code}")}
+        except Exception as exc:
+            return {"status": "ERROR", "message": str(exc)}
+
     # --- Diagnostic Engine APIs ---
     def trigger_diagnosis(self, inspection_id: int) -> Tuple[bool, Any]:
         """Trigger multi-modal evidence synthesis and diagnosis generation."""
